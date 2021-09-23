@@ -24,7 +24,7 @@ $seed$ 为选定的一个合适的种子（最好是质数，对字符串 hash �
 
 #### Hack
 
-![treehash1](./images/treehash1.png)
+![treehash1](./images/tree-hash1-hack.svg)
 
 上图中，可以计算出两棵树的哈希值均为 $60(1+seed)$。
 
@@ -69,6 +69,9 @@ $size_{x}$ 表示以节点 $x$ 为根的子树大小。
 $son_{x,i}$ 表示 $x$ 所有子节点之一（不用排序）。
 
 $prime(i)$ 表示第 $i$ 个质数。
+
+???+ warning
+    对于两棵大小不同的树 $T_1,T_2$，$f_{T_1}=f_{T_2}$ 是可能的，因此在判断树同构前要先判断大小是否相等。
 
 ## 例题
 

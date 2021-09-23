@@ -1,5 +1,7 @@
 ## 哈希表
 
+![](images/hashtable.svg)
+
 哈希表是又称散列表，一种以 "key-value" 形式存储数据的数据结构。所谓以 "key-value" 形式存储数据，是指任意的 key 都唯一对应到内存中的某个位置。只需要输入查找的值 key，就可以快速地找到其对应的 value。可以把哈希表理解为一种高级的数组，这种数组的下标可以是很大的整数，浮点数，字符串甚至结构体。
 
 ## 哈希函数
@@ -31,6 +33,7 @@
 ### 拉链法
 
 ```cpp
+// C++ Version
 const int SIZE = 1000000;
 const int M = 999997;
 struct HashTable {
@@ -55,6 +58,43 @@ struct HashTable {
     return value;
   }
 };
+```
+
+```python
+# Python Version
+M = 999997
+SIZE = 1000000
+class Node:
+    def __init__(self, next = None, value = None, key = None): 
+        self.next = next
+        self.value = value
+        self.key = key
+data = [Node()] * SIZE
+head = [0] * M
+size = 0
+def f(key):
+    return key % M
+def get(key):
+    p = head[f(key)]
+    while p:
+        if data[p].key == key:
+            return data[p].value
+        p = data[p].next
+        return -1
+def modify(key, value):
+    p = head[f(key)]
+    while p:
+        if data[p].key == key:
+            data[p].value = value
+            return data[p].value
+        p = data[p].next
+def add(key, value):
+    if get(key) != -1:
+        return -1
+    data[size] = Node(head[f(key)], value, key)
+    size = size + 1
+    head[f(key)] = size
+    return value
 ```
 
 这边再为大家提供一个封装过的模板，可以像 map 一样用，并且较短
